@@ -1,18 +1,12 @@
-# XBee3 MicroPython
-# SPI Implementation for APA102
+# XBee3 MicroPython SPI Implementation for APA102
 #
-# Adjust constants SPI_CLK_PIN,
-# SPI_MOSI_PIN, and LED_COUNT. Switch
-# "D2" to the pin you have hooked up
-# to the CI line of the LEDs, and
-# "D4" to the DI line of the LEDs.
+# Adjust constants SPI_CLK_PIN, SPI_MOSI_PIN, and LED_COUNT. 
+# Switch "D2" to the pin you have hooked up to the CI line of the LEDs,
+# and "D4" to the DI line of the LEDs.
 #
-# The loop at the bottom
-# is just a sample that randomly
-# sets the LED colors with conservative
-# brightness to limit power use
-# for long strips (a 64 LED strip
-# stayed within 350 mA in my testing).
+# The loop at the bottom is just a sample that randomly sets the 
+# LED colors with limited brightness to limit power use
+# for long strips (a 64 LED strip stayed within 350 mA in my testing).
 
 import time
 import uos
@@ -51,7 +45,6 @@ while True:
     start = time.ticks_ms()
     write_start_frame()
     rnd_bytes = uos.urandom(LED_COUNT * 3)
-    bright_color = machine.rng() % 3
     for i in range(LED_COUNT):
         red = rnd_bytes[i] % 20
         green = rnd_bytes[LED_COUNT + i] % 22
